@@ -49,10 +49,10 @@ Ensure you have [Node.js](https://nodejs.org/) (v18+) and [MongoDB](https://www.
    ```
 3. Create a `.env` file in the root of the `backend/` folder and add:
    ```env
-   PORT=3000
-   MONGO_URI=mongodb://localhost:27051/ai-interview-prep
-   GOOGLE_GENAI_API_KEY=your_gemini_api_key_here
-   JWT_SECRET=your_jwt_secret_key_here
+   PORT
+   MONGO_URI
+   GOOGLE_GENAI_API_KEY
+   JWT_SECRET
    ```
 4. Start the backend development server:
    ```bash
