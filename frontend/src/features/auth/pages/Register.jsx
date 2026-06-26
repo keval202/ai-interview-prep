@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/UseAuth'
 
 const Register = () => {
     const navigate = useNavigate()
-    const [userName, setUserName] = useState("")
+    const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -32,7 +32,7 @@ const Register = () => {
                     <div className="input-group">
                         <label htmlFor="username">Username</label>
                         <input 
-                        onChange={(e) => setUserName(e.target.value)}
+                        onChange={(e) => setUsername(e.target.value)}
                         type="text" id="username" name="username" placeholder='Enter username' />
                     </div>
 
