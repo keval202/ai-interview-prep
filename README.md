@@ -90,5 +90,5 @@ The project is structured to deploy smoothly on **Render** (or Vercel/Heroku) wi
   ```
 - **Environment Variables**: Make sure to add `MONGO_URI`, `GOOGLE_GENAI_API_KEY`, `JWT_SECRET`, and `NODE_ENV=production` on the Render dashboard.
 
-Open [https://ai-interview-prep-dvoc.onrender.com/](http://localhost:5173](https://ai-interview-prep-dvoc.onrender.com/) in your browser.
+Open [https://ai-interview-prep-dvoc.onrender.com/](https://ai-interview-prep-dvoc.onrender.com/) in your browser.
 
