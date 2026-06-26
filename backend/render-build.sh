@@ -5,7 +5,7 @@ set -o errexit
 # Change directory to where the script is located (backend/ folder)
 cd "$(dirname "$0")"
 
-echo ">>> Installing dependencies..."
+echo ">>> Installing backend dependencies..."
 npm install
 
 echo ">>> Ensuring Puppeteer cache directory exists..."
@@ -19,5 +19,11 @@ echo ">>> Persisting Chromium in the Render cache..."
 if [[ -d .cache/puppeteer/chrome/ ]]; then
   cp -R .cache/puppeteer/chrome/ $PUPPETEER_CACHE_DIR
 fi
+
+echo ">>> Installing frontend dependencies and building..."
+cd ../frontend
+npm install
+npm run build
+cd ../backend
 
 echo ">>> Build completed successfully!"
