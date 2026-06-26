@@ -59,15 +59,33 @@ export const useInterview = () => {
 
     const getResumePdf = async (interviewReportId) => {
         setLoading(true)
-        let response = null
         try {
-            response = await generateResumePdf({ interviewReportId })
-            const url = window.URL.createObjectURL(new Blob([response], { type: "application/pdf" }))
-            const link = document.createElement("a")
-            link.href = url
-            link.setAttribute("download", `resume_${interviewReportId}.pdf`)
-            document.body.appendChild(link)
-            link.click()
+            const data = await generateResumePdf({ interviewReportId })
+            if (data && data.html) {
+                const iframe = document.createElement("iframe")
+                iframe.style.position = "fixed"
+                iframe.style.right = "0"
+                iframe.style.bottom = "0"
+                iframe.style.width = "0"
+                iframe.style.height = "0"
+                iframe.style.border = "0"
+                document.body.appendChild(iframe)
+
+                const doc = iframe.contentWindow.document || iframe.contentDocument
+                doc.open()
+                doc.write(data.html)
+                doc.close()
+
+                setTimeout(() => {
+                    iframe.contentWindow.focus()
+                    iframe.contentWindow.print()
+                    setTimeout(() => {
+                        document.body.removeChild(iframe)
+                    }, 1000)
+                }, 500)
+            } else {
+                console.error("No HTML content returned for resume.")
+            }
         }
         catch (error) {
             console.log(error)

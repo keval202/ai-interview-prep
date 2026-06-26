@@ -1,5 +1,5 @@
 const { PDFParse } = require("pdf-parse")
-const { generateInterviewReport, generateResumePdf } = require("../services/ai.service")
+const { generateInterviewReport, generateResumeHtml } = require("../services/ai.service")
 const interviewReportModel = require("../models/interviewReport.model")
 
 async function generateInterViewReportController(req, res) {
@@ -81,9 +81,9 @@ async function getAllInterviewReportsController(req, res) {
 }
 
 /**
- * @description Controller to generate resume PDF based on user self description, resume and job description.
+ * @description Controller to generate resume HTML based on user self description, resume and job description.
  */
-async function generateResumePdfController(req, res) {
+async function generateResumeHtmlController(req, res) {
     try {
         const { interviewReportId } = req.params
 
@@ -97,21 +97,19 @@ async function generateResumePdfController(req, res) {
 
         const { resume, jobDescription, selfDescription } = interviewReport
 
-        const pdfBuffer = await generateResumePdf({ resume, jobDescription, selfDescription })
+        const html = await generateResumeHtml({ resume, jobDescription, selfDescription })
 
-        res.set({
-            "Content-Type": "application/pdf",
-            "Content-Disposition": `attachment; filename=resume_${interviewReportId}.pdf`
+        res.status(200).json({
+            message: "Resume HTML generated successfully.",
+            html
         })
-
-        res.send(pdfBuffer)
     } catch (error) {
-        console.error("Error generating resume PDF:", error)
+        console.error("Error generating resume HTML:", error)
         res.status(500).json({
-            message: "Failed to generate resume PDF.",
+            message: "Failed to generate resume HTML.",
             error: error.message
         })
     }
 }
 
-module.exports = { generateInterViewReportController, getInterviewReportByIdController, getAllInterviewReportsController, generateResumePdfController }
+module.exports = { generateInterViewReportController, getInterviewReportByIdController, getAllInterviewReportsController, generateResumeHtmlController }
