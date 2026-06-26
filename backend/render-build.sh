@@ -22,7 +22,7 @@ fi
 
 echo ">>> Installing frontend dependencies and building..."
 cd ../frontend
-npm install
+npm install --include=dev
 npm run build
 cd ../backend
 
