@@ -90,7 +90,3 @@ The project is structured to deploy smoothly on **Render** (or Vercel/Heroku) wi
   ```
 - **Environment Variables**: Make sure to add `MONGO_URI`, `GOOGLE_GENAI_API_KEY`, `JWT_SECRET`, and `NODE_ENV=production` on the Render dashboard.
 
----
-
-## 📄 License
-This project is licensed under the MIT License.
