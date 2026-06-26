@@ -2,6 +2,9 @@
 # exit on error
 set -o errexit
 
+# Change directory to where the script is located (backend/ folder)
+cd "$(dirname "$0")"
+
 echo ">>> Installing dependencies..."
 npm install
 
@@ -13,8 +16,8 @@ echo ">>> Installing Puppeteer Chromium browser binary..."
 npx puppeteer browsers install chrome
 
 echo ">>> Persisting Chromium in the Render cache..."
-if [[ -d /opt/render/project/src/.cache/puppeteer/chrome/ ]]; then
-  cp -R /opt/render/project/src/.cache/puppeteer/chrome/ $PUPPETEER_CACHE_DIR
+if [[ -d .cache/puppeteer/chrome/ ]]; then
+  cp -R .cache/puppeteer/chrome/ $PUPPETEER_CACHE_DIR
 fi
 
 echo ">>> Build completed successfully!"
